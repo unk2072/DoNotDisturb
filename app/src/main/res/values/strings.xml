@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">おやすみモード</string>
+    <string name="list0_0">設定</string>
+    <string name="list1_0">有効にする</string>
+    <string name="list1_1">無効にする</string>
+    <string name="list2_0">開始時刻（%1$02d:%2$02d）</string>
+    <string name="list3_0">終了時刻（%1$02d:%2$02d）</string>
+    <string name="time_title">時刻設定</string>
+    <string name="time_done">完了</string>
+
+</resources>
