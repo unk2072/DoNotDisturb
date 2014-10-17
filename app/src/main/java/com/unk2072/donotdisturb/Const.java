@@ -10,6 +10,7 @@ public class Const {
 
     public static final String RUN_MODE     = "run_mode";
     public static final int MODE_START      = 0;
-    public static final int MODE_ON         = 1;
-    public static final int MODE_OFF        = 2;
+    public static final int MODE_END        = 1;
+    public static final int MODE_ON         = 2;
+    public static final int MODE_OFF        = 3;
 }

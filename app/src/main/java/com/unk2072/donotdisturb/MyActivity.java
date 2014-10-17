@@ -88,7 +88,7 @@ public class MyActivity extends ActionBarActivity implements AdapterView.OnItemC
         mAdapter.notifyDataSetChanged();
 
         Intent i = new Intent(this, MyService.class);
-        i.putExtra(Const.RUN_MODE, Const.MODE_START);
+        i.putExtra(Const.RUN_MODE, run_flag ? Const.MODE_START : Const.MODE_END);
         startService(i);
         return true;
     }

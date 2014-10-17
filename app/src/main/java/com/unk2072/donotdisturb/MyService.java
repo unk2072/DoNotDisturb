@@ -32,7 +32,10 @@ public class MyService extends IntentService {
 
         switch (mode) {
             case Const.MODE_START:
-                doRefreshAlarm();
+                doModeStart();
+                break;
+            case Const.MODE_END:
+                doModeEnd();
                 break;
             case Const.MODE_ON:
                 doSetRingerMode(true);
@@ -49,19 +52,22 @@ public class MyService extends IntentService {
         super.onDestroy();
     }
 
-    private boolean doRefreshAlarm() {
-        Log.i(TAG, "doRefreshAlarm");
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean run_flag = pref.getBoolean(Const.RUN_FLAG, false);
-        if (run_flag) {
-            setAlarm(true);
-            setAlarm(false);
-            doSetRingerMode(isDoNotDisturb());
-        } else {
-            cancelAlarm(true);
-            cancelAlarm(false);
-            doSetRingerMode(false);
+    private boolean doModeStart() {
+        Log.i(TAG, "doModeStart");
+        doSetRingerMode(false);
+        if (isDoNotDisturbNow()) {
+            doSetRingerMode(true);
         }
+        setAlarm(true);
+        setAlarm(false);
+        return true;
+    }
+
+    private boolean doModeEnd() {
+        Log.i(TAG, "doModeEnd");
+        cancelAlarm(true);
+        cancelAlarm(false);
+        doSetRingerMode(false);
         return true;
     }
 
@@ -82,7 +88,7 @@ public class MyService extends IntentService {
         return true;
     }
 
-    private boolean isDoNotDisturb() {
+    private boolean isDoNotDisturbNow() {
         long time_now, time_on, time_off;
         time_now = System.currentTimeMillis();
 
