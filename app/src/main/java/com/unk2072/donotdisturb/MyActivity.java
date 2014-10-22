@@ -1,18 +1,16 @@
 package com.unk2072.donotdisturb;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.ActionBarActivity;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,7 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-public class MyActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
+public class MyActivity extends Activity implements AdapterView.OnItemClickListener {
     private static final String TAG = "MyActivity";
     private String[] mListText = new String[3];
     private ArrayAdapter<String> mAdapter;
@@ -32,12 +30,6 @@ public class MyActivity extends ActionBarActivity implements AdapterView.OnItemC
         setContentView(R.layout.activity_my);
 
         initListView();
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        return false;
     }
 
     private boolean initListView() {
@@ -69,10 +61,10 @@ public class MyActivity extends ActionBarActivity implements AdapterView.OnItemC
                 doToggleService();
                 break;
             case 2:
-                new SettingDialog1().show(getSupportFragmentManager(), DIALOG);
+                new SettingDialog1().show(getFragmentManager(), DIALOG);
                 break;
             case 3:
-                new SettingDialog2().show(getSupportFragmentManager(), DIALOG);
+                new SettingDialog2().show(getFragmentManager(), DIALOG);
                 break;
         }
     }
@@ -96,7 +88,6 @@ public class MyActivity extends ActionBarActivity implements AdapterView.OnItemC
     public static class SettingDialog1 extends DialogFragment implements DialogInterface.OnClickListener {
         private TimePicker mTimePicker;
 
-        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -147,7 +138,6 @@ public class MyActivity extends ActionBarActivity implements AdapterView.OnItemC
     public static class SettingDialog2 extends DialogFragment implements DialogInterface.OnClickListener {
         private TimePicker mTimePicker;
 
-        @NonNull
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
